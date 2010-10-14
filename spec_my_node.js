@@ -12,44 +12,54 @@ if (typeof Object.create !== 'function') {
 var specCase = function () {};
 specCase.desc = "";
 specCase.spec = function () {};
+specCase.beforeEach = function () {};
 
 var specs = [];
 
 var describe = exports.describe = function (description) {
+  current_spec = Object.create(specCase);
+  specs.push(current_spec);
+  
   return describe;
 };
 
 var createSpecCase = function (desc, spec) {
-  var new_spec = Object.create(specCase); 
-  new_spec.desc = desc;
-  new_spec.spec = spec;
-  
-  return new_spec;
+    
+  return current_spec;
 };
 
+describe.beforeEach = function (setup) {
+  current_spec.beforeEach = setup;
+  return describe;
+}
+
 describe.it = function (desc, spec) {
-  var new_spec = createSpecCase(desc, spec);
-  specs.push(new_spec);
+  current_spec.desc = desc;
+  current_spec.spec = spec;
 };
 
 var runTests = function () {
+  var failedTests = 0;
   
   for (var i = 0; i < specs.length; i++) {
     var result = "passed", specCase = specs[i];
-
     try {
+      specCase.beforeEach();
       specCase.spec();
     } catch (e)
     {
-      result = "failed!";
+      result = "\033[31mfailed!\033[0m";
+      failedTests++;
     }
 
     console.log(specCase.desc + '........' + result);
   }
+
+  console.log('Total Tests: ' + specs.length + ' Failed Tests: ' + failedTests);
 };
 
 process.addListener('exit', function () {
-  console.log('run specs...'); 
+  console.log('Spec My Node Results:'); 
   runTests();
 });
 

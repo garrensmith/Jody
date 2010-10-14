@@ -11,3 +11,10 @@ spec.describe("Test 1").it("Should pass",function(){
 spec.describe("Test 2").it("Should fail",function(){
   assert.equal(1,2);
 });
+
+var value = 0;
+spec.describe("Before Test").beforeEach (function (){
+  value = 2;
+}).it ("Should run before", function () { 
+  assert.equal(value,2);
+});
