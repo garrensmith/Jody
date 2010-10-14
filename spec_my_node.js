@@ -15,6 +15,7 @@ specCase.spec = function () {};
 specCase.beforeEach = function () {};
 
 var specs = [];
+var current_spec = function () {};
 
 var describe = exports.describe = function (description) {
   current_spec = Object.create(specCase);
@@ -31,7 +32,7 @@ var createSpecCase = function (desc, spec) {
 describe.beforeEach = function (setup) {
   current_spec.beforeEach = setup;
   return describe;
-}
+};
 
 describe.it = function (desc, spec) {
   current_spec.desc = desc;
