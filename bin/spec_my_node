@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 /*!
- * Expresso
+ * Spec My Node
  * Copyright(c) Garren Smith <garrens@drivensoftware.net>
  * (MIT Licensed)
  */
 
- var spec = require('../lib/spec_my_node.js');
- args = process.argv.slice(2);
- console.log(args);
- 
+var spec = require('../lib/spec_my_node.js');
+path = require('path');
+args = process.argv.slice(2);
+console.log(args[0]);
 
+file = path.join(process.cwd(), args[0]);
+require(file);

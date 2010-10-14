@@ -1,7 +1,7 @@
-var spec = require('./spec_my_node.js')
+var spec = require('../lib/spec_my_node.js')
 var assert = require("assert");
 var inspect = require('sys').inspect;
-
+console.log("running");
 //console.log(inspect(spec.describe));
 
 spec.describe("Test 1").it("Should pass",function(){
