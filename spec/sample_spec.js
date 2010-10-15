@@ -18,14 +18,14 @@ describe("Before Test").beforeEach (function (){
 }).it ("Should run before to pass", function () { 
   assert.equal(value,2);
 });
-/*
-spec.describe("Multiple tests in context").
+
+describe("Multiple tests in context").
   it("First in context", function () {
     assert.equal(2,2);
   }).
   it("Second in context", function () {
     assert.equal(2,2);
-  });*/
+  });
 
 
 
