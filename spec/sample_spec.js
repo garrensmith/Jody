@@ -18,3 +18,10 @@ spec.describe("Before Test").beforeEach (function (){
 }).it ("Should run before", function () { 
   assert.equal(value,2);
 });
+
+
+spec.describe("Should test").
+  it("Should apply should", function () {
+    var test = 2;
+    test.should.equal(2);
+  });
