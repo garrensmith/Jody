@@ -5,23 +5,27 @@ console.log("running");
 //console.log(inspect(spec.describe));
 
 spec.describe("Test 1").it("Should pass",function(){
-  assert.equal(1,1);
+  assert.equal(2,1);
 });
-
+/*
 spec.describe("Test 2").it("Should fail",function(){
   assert.equal(1,2);
-});
+});*/
 
-var value = 0;
+/*var value = 0;
 spec.describe("Before Test").beforeEach (function (){
   value = 2;
 }).it ("Should run before", function () { 
   assert.equal(value,2);
-});
+});*/
+/*
+spec.describe("Multiple tests in context").
+  it("First in context", function () {
+    assert.equal(2,2);
+  }).
+  it("Second in context", function () {
+    assert.equal(2,2);
+  });*/
 
 
-spec.describe("Should test").
-  it("Should apply should", function () {
-    var test = 2;
-    test.should.equal(2);
-  });
+
