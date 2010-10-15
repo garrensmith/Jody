@@ -12,12 +12,12 @@ describe("Test 2").it("Should fail",function(){
   assert.equal(1,2);
 });
 
-/*var value = 0;
-spec.describe("Before Test").beforeEach (function (){
+var value = 0;
+describe("Before Test").beforeEach (function (){
   value = 2;
-}).it ("Should run before", function () { 
+}).it ("Should run before to pass", function () { 
   assert.equal(value,2);
-});*/
+});
 /*
 spec.describe("Multiple tests in context").
   it("First in context", function () {
