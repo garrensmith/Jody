@@ -10,6 +10,7 @@ To Use
 Todo
 ====
 
-* Add before and afters
+* Add multiple file support
+* console command support
 * Add some useful asserts
 * If I do really well add some mocks
