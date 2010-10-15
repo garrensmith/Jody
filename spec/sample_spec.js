@@ -1,8 +1,6 @@
 var describe = require('../lib/spec_my_node.js').describe
 var assert = require("assert");
 var inspect = require('sys').inspect;
-console.log("running");
-//console.log(inspect(spec.describe));
 
 describe("Passing Tests").it("Should pass",function(){
   assert.equal(1,1);
