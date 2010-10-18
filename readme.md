@@ -12,5 +12,5 @@ Todo
 
 * Add multiple file support
 * console command support
-* Add some useful asserts
+* Add some useful asserts and useful assertion messages
 * If I do really well add some mocks
