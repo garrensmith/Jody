@@ -25,5 +25,17 @@ describe("Multiple tests in context").
     assert.equal(2,2);
   });
 
+describe("Matchers and should").
+  it("Should be able to use should to assert a passing test", function () {
+    var testString = "hello";
+    testString.should().be_equal("hello");
 
+  }).
+  it("Should assert failing test", function () {
+    var testObj = function () { };
+    testObj.voice = "blah";
+
+    testObj.voice.should().be_equal("hello");
+
+  });;
 

@@ -10,6 +10,7 @@ To Use
 Todo
 ====
 
+* Display results like rspec doc type
 * Add multiple file support
 * console command support
 * Add some useful asserts and useful assertion messages
