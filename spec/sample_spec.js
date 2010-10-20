@@ -18,24 +18,36 @@ describe("Before Test").beforeEach (function (){
 });
 
 describe("Multiple tests in context").
-  it("First in context", function () {
-    assert.equal(2,2);
-  }).
-  it("Second in context", function () {
-    assert.equal(2,2);
-  });
+it("First in context", function () {
+  assert.equal(2,2);
+}).
+it("Second in context", function () {
+  assert.equal(2,2);
+});
 
 describe("Matchers and should").
-  it("Should be able to use should to assert a passing test", function () {
-    var testString = "hello";
-    testString.should().be_equal("hello");
+it("Should be able to use should to assert a passing test", function () {
+  var testString = "hello";
+  testString.should().be_equal("hello");
 
-  }).
-  it("Should assert failing test", function () {
-    var testObj = function () { };
-    testObj.voice = "blah";
+}).
+it("Should assert failing test", function () {
+  var testObj = function () { };
+  testObj.voice = "blah";
 
-    testObj.voice.should().be_equal("hello");
+  testObj.voice.should().be_equal("hello");
 
-  });;
+});;
+
+describe("Exception").
+it("Should throw exception", function () {
+  (function () {
+    throw { message: "My exception" }
+  }).should().throw_error();
+}).
+it("Should not throw exception", function () {
+  (function () {
+  }).should().throw_error();
+})
+
 
