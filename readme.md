@@ -11,7 +11,7 @@ To Use
 ======
     run spec_my_node <file_name>
 or
-# Create specs in ./spec and then:
+Create specs in ./spec and then:
     run spec_my_node 
 
 Todo
