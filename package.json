@@ -2,6 +2,11 @@
   "version": "0.0.1",
   "description": "Basic BDD Framework",
   "author": "Garren Smith <garrens@drivensoftware.net>",
+   "homepage" : "http://github.com/garrensmith/Spec-My-Node",
+ "repository" :
+  { "type" : "git"
+  , "url" : "http://github.com/garrensmith/Spec-My-Node.git"
+  },  
   "bin": { 
     "spec_my_node": "./bin/spec_my_node",
   }  
