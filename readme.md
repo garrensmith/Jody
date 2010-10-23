@@ -3,11 +3,16 @@ Spec my node
 
 A basic bdd framework to work with node so that I can learn a bit of javascript and node. 
 
+To Install
+==========
+    npm Spec_My_Node
+
 To Use
 ======
-    run bin/spec_my_node <file_name>
+    run spec_my_node <file_name>
 or
-    run bin/spec_my_node
+# Create specs in ./spec and then:
+    run spec_my_node 
 
 Todo
 ====
