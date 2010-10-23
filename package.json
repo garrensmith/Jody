@@ -1,0 +1,9 @@
+{ "name": "Spec My Node",
+  "version": "0.0.1",
+  "description": "Basic BDD Framework",
+  "author": "Garren Smith <garrens@drivensoftware.net>",
+  "bin": { 
+    "spec_my_node": "./bin/spec_my_node",
+  }  
+}
+
