@@ -6,10 +6,69 @@
  * (MIT Licensed)
  */
 
-var spec = require('../lib/spec_my_node.js');
-path = require('path');
-args = process.argv.slice(2);
-console.log(args[0]);
+/**
+ * Spec My Node version.
+ */
 
-file = path.join(process.cwd(), args[0]);
-require(file);
+var version = '0.0.1';
+
+
+var spec = require('../lib/spec_my_node.js'),
+    path = require('path'),
+    fs = require('fs'),
+    args = process.argv.slice(2),
+    files = [];     
+//console.log(args[0]);
+//
+var help = ''
++ 'Usage: spec_my_node [options] <file ...>'
++ '\n'
++ '\nOptions:'
++ '\n  -v, --version        Output version number'
++ '\n  -h, --help           Display help information'
++ '\n'
++ '\n If no file given, will look in ./spec for spec';
+
+
+while (args.length) {
+  var arg = args.shift();
+  switch(arg) {
+    case '-h':
+    case '--help':
+      console.log(help + '\n');
+      process.exit(1);
+      break;
+
+    case '-v':
+    case '--version':
+      console.log(version);
+      process.exit(1);
+      break;
+
+    default:
+      if (/\.js$/.test(arg)) {
+        files.push(arg);
+      }
+      break;
+  }
+}
+
+if (files.length === 0) {
+  try {
+    files = fs.readdirSync('spec').map(function(file){
+      return 'spec/' + file;
+    });
+  } catch (err) {
+    console.log('\n  failed to load specs in ./spec\n');
+    process.exit(1);
+  }
+}
+
+
+
+files.forEach (function (file) {
+  file = path.join(process.cwd(), file);
+  require(file);
+  console.log("executing " + file);
+});
+// vim:ft=javascript

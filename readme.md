@@ -11,6 +11,7 @@ Todo
 ====
 
 * Display results like rspec doc type
+* Extra report results to own object and file
 * Add multiple file support
 * console command support
 * Add some useful asserts and useful assertion messages
