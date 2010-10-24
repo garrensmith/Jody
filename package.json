@@ -9,6 +9,7 @@
   },  
   "bin": { 
     "spec_my_node": "./bin/spec_my_node",
-  }  
+  },  
+ "modules":{"spec_my_node":"./lib/spec_my_node"},
 }
 
