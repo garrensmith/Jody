@@ -10,10 +10,11 @@
  * Spec My Node version.
  */
 
-var version = '0.0.1';
+var version = '0.0.2';
 
 
 var spec = require('../lib/spec_my_node.js'),
+    runner = require('../lib/spec_runner.js'),
     path = require('path'),
     fs = require('fs'),
     args = process.argv.slice(2),
@@ -64,11 +65,16 @@ if (files.length === 0) {
   }
 }
 
-
-
 files.forEach (function (file) {
   file = path.join(process.cwd(), file);
   require(file);
   console.log("executing " + file);
 });
+
+process.addListener('exit', function () {
+  console.log('Spec My Node Results:'); 
+  runner.runAllSpecs();
+  console.log("\n" + runner.totalSpecs + " Examples, " + runner.failedSpecs + " failed, " + runner.passedSpecs + " passed\n");
+});
+
 // vim:ft=javascript
