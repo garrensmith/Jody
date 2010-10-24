@@ -14,11 +14,15 @@ or
 Create specs in ./spec and then:
     run spec_my_node 
 
+Examples
+========
+
+See ./spec folder for examples on use
+
 Todo
 ====
 
-* Add package to npm
 * Display results like rspec doc type
-* Extra report results to own object and file
+* Extract report results to own object and file
 * Add some useful asserts and useful assertion messages
 * If I do really well add some mocks
