@@ -50,4 +50,10 @@ it("Should not throw exception", function () {
   }).should().throwError();
 })
 
+describe("Array matchers").
+  it("Should check for containing item", function () {
+    var test = [1,2,3,4];
+
+    test.should().contain(3);
+  });
 
