@@ -2,7 +2,7 @@ var describe = require('../lib/spec_my_node.js').describe
 var assert = require("assert");
 var inspect = require('sys').inspect;
 
-describe("Passing Tests").it("Should pass",function(){
+describe("Test 1").it("Should pass",function(){
   assert.equal(1,1);
 });
 

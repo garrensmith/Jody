@@ -1,4 +1,4 @@
-var describe = require('../lib/spec_my_node').describe;
+/*var describe = require('../lib/spec_my_node').describe;
 var inspect = require('sys').inspect;
 var assert = require('assert');
 
@@ -33,4 +33,4 @@ describe("Async calls").
       n.should().beEqual(2);
     });
     
-  });
+  });*/
