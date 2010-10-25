@@ -22,7 +22,6 @@ See ./spec folder for examples on use
 Todo
 ====
 
-* Display results like rspec doc type
+* Improve error messages
 * Extract report results to own object and file
-* Add some useful asserts and useful assertion messages
-* If I do really well add some mocks
+* Mocks and Stubs
