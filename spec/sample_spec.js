@@ -45,7 +45,7 @@ it("Should throw exception", function () {
     throw { message: "My exception" }
   }).should().throwError();
 }).
-it("Should not throw exception", function () {
+it("Should fail as no exception thrown", function () {
   (function () {
   }).should().throwError();
 })
