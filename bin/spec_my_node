@@ -78,7 +78,7 @@ files.forEach (function (file) {
 runner.runAllSpecs();
 
 process.addListener('exit', function () {
-    process.emit('evalCallbacks');
+    runner.processCallbacks();
     reporter.displayResults(); 
 });
 

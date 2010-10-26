@@ -1,17 +1,17 @@
-var describe = require('../lib/spec_my_node.js').describe
+var describe = require('Spec_My_Node').describe;
 var assert = require("assert");
 var inspect = require('sys').inspect;
 
-describe("Test 1").it("Should pass",function(){
+describe("Test 1").it("Should pass",function () {
   assert.equal(1,1);
 });
 
-describe("Test 2").it("Should fail",function(){
+describe("Test 2").it("Should fail",function () {
   assert.equal(1,2);
 });
 
 var value = 0;
-describe("Before Test").beforeEach (function (){
+describe("Before Test").beforeEach (function () {
   value = 2;
 }).it ("Should run before to pass", function () { 
   assert.equal(value,2);
