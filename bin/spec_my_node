@@ -60,13 +60,17 @@ while (args.length) {
 
 if (files.length === 0) {
   try {
-    files = fs.readdirSync('spec').map(function(file){
-      return 'spec/' + file;
+    fs.readdirSync('spec').map(function(file){
+      if (/\.js$/.test(file)) {
+        files.push('spec/' + file); 
+      }
+
     });
   } catch (err) {
     console.log('\n  failed to load specs in ./spec\n');
     process.exit(1);
   }
+  console.log('files ' + files);
 }
 
 files.forEach (function (file) {
@@ -78,8 +82,8 @@ files.forEach (function (file) {
 runner.runAllSpecs();
 
 process.addListener('exit', function () {
-    runner.processCallbacks();
-    reporter.displayResults(); 
+  runner.processCallbacks();
+  reporter.displayResults(); 
 });
 
 // vim:ft=javascript
