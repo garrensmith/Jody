@@ -55,5 +55,10 @@ describe("Array matchers").
     var test = [1,2,3,4];
 
     test.should().contain(3);
+  }).
+  it("Should fail as item not in array", function () {
+    var test = [1,2,4];
+
+    test.should().contain(3);
   });
 
