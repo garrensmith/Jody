@@ -38,5 +38,8 @@ Todo
 ====
 
 * Improve error messages
-* Extract report results to own object and file
+* Add beforeAll, afterEach and afterAll
+* testing of http apps
 * Mocks and Stubs
+
+
