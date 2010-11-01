@@ -15,7 +15,7 @@ To Use
     run Jody <file_name>
 or
 Create specs in ./spec and then:
-    run spec_my_node 
+    run Jody 
 
 To use:
     var describe = require('Jody').describe;
