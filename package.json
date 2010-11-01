@@ -1,15 +1,15 @@
-{ "name": "spec_my_node",
+{ "name": "Jody",
   "version": "0.0.3",
   "description": "Descriptive BDD Framework",
   "author": "Garren Smith <garrens@drivensoftware.net>",
-   "homepage" : "http://github.com/garrensmith/Spec-My-Node",
+   "homepage" : "http://github.com/garrensmith/Jody",
  "repository" :
   { "type" : "git"
-  , "url" : "http://github.com/garrensmith/Spec-My-Node.git"
+  , "url" : "http://github.com/garrensmith/Jody.git"
   },  
   "bin": { 
-    "spec_my_node": "./bin/spec_my_node",
+    "Jody": "./bin/Jody",
   },  
-  "main" : "./lib/spec_my_node"
+  "main" : "./lib/Jody"
 }
 

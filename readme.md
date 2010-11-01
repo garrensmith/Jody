@@ -1,4 +1,4 @@
-Spec my node
+Jody
 ============
 
 A basic bdd framework to work with node so that I can learn a bit of javascript and node. 
@@ -8,17 +8,17 @@ It can test callbacks and events
 
 To Install
 ==========
-    npm Spec_My_Node
+    npm Jody
 
 To Use
 ======
-    run spec_my_node <file_name>
+    run Jody <file_name>
 or
 Create specs in ./spec and then:
     run spec_my_node 
 
 To use:
-    var describe = require('spec_my_node').describe;
+    var describe = require('Jody').describe;
 
     describe("New set of specs").
       beforeEach(function () {

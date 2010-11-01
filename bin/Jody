@@ -13,7 +13,7 @@
 var version = '0.0.2';
 
 
-var spec = require('../lib/spec_my_node.js'),
+var spec = require('../lib/Jody.js'),
     runner = require('../lib/spec_runner.js'),
     matchers = require('../lib/matchers.js'),
     reporter = require('../lib/spec_reporter.js'),
@@ -26,7 +26,7 @@ var inspect = require('sys').inspect;
 //console.log(args[0]);
 //
 var help = ''
-+ 'Usage: spec_my_node [options] <file ...>'
++ 'Usage: Jody [options] <file ...>'
 + '\n'
 + '\nOptions:'
 + '\n  -v, --version        Output version number'

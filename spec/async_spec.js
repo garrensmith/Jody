@@ -1,4 +1,4 @@
-var describe = require('Spec_My_Node').describe;
+var describe = require('Jody').describe;
 var inspect = require('sys').inspect;
 var assert = require('assert');
 
