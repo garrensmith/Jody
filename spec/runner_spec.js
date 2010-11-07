@@ -1,4 +1,4 @@
-var runner = require('../lib/spec_runner');
+var runner = require('../lib/runner');
 var describe = require('Jody').describe;
 
 /*describe("Run all Specs").
@@ -23,8 +23,10 @@ var describe = require('Jody').describe;
 
 var beforeCalled = false;
 var specCalled = false;
+var specFail = function () {};
+var specPass = function () {};
 
-describe("Run spec").
+describe("Spec Runner").
   beforeEach( function () {
         var specCase = function() {};
     
@@ -33,7 +35,7 @@ describe("Run spec").
       beforeCalled = true;
     };
     
-    var spec =  {
+    specPass =  {
       desc : "",
       methodBody : function () {
         specCalled = true;
@@ -42,8 +44,18 @@ describe("Run spec").
       error : ""
     };
 
+      specFail =  {
+      desc : "",
+      methodBody : function () {
+        throw {
+          message: "error"
+        };
+      },
+      passed : false,
+      error : ""
+    };
 
-    specCase.specs = [spec];
+    specCase.specs = [specPass, specFail];
 
     runner.runSpecCase(specCase);
 
@@ -51,8 +63,13 @@ describe("Run spec").
   it("Should call the before method", function () {
     beforeCalled.should().beTrue();
   }).
-  it("Should run Spec", function () {
-     specCalled.should().beTrue();
+  it("Should run Spec function", function () {
+    specCalled.should().beTrue();
+    specPass.passed.should().beTrue();
+  }).
+  it("Should catch failing test", function () {
+    specFail.passed.should().beFalse();
+    specFail.error.message.should().beEqual("error");
   });
 ;
 
