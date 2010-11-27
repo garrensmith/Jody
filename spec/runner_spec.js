@@ -22,6 +22,7 @@ var describe = require('Jody').describe;
   });*/
 
 var beforeCalled = false;
+var afterAllCalled = false;
 var specCalled = false;
 var specFail = function () {};
 var specPass = function () {};
@@ -33,6 +34,10 @@ describe("Spec Runner").
     specCase.desc = "test";
     specCase.beforeEachMethodBody = function () {
       beforeCalled = true;
+    };
+
+    specCase.afterAllMethodBody = function () {
+      afterAllCalled = true;
     };
     
     specPass =  {
@@ -71,5 +76,6 @@ describe("Spec Runner").
     specFail.passed.should().beFalse();
     specFail.error.message.should().beEqual("error");
   });
-;
+  
+
 

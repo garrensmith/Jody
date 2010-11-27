@@ -58,3 +58,18 @@ describe("Describe with new spec").
   it("Should contain empty error message", function () {
     spec_under_test.error.should().beEqual("");
   });
+
+
+describe("Describe spec with After all").
+  it("Should create after all method", function () {
+    var afterAllFunction = function () {};
+
+    describe_under_test("example spec with after all").
+      it("a spec", function () {}).
+      afterAll(afterAllFunction);
+
+    var specCase = specs.pop();
+
+    specCase.afterAllMethodBody.should().beEqual(afterAllFunction);
+  });
+  
