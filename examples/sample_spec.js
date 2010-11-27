@@ -6,9 +6,13 @@ describe("Test 1").it("Should pass",function () {
   assert.equal(1,1);
 });
 
-describe("Test 2").it("Should fail",function () {
+describe("Test 2").
+  it("Should fail",function () {
   assert.equal(1,2);
-});
+}).
+  afterAll(function () {
+    console.log("Woohoo");
+  });
 
 var value = 0;
 describe("Before Test").beforeEach (function () {
