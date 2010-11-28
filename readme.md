@@ -38,6 +38,9 @@ Todo
 ====
 
 * Improve error messages
+* Watch files and autotest
+* describe or context within spec
+* more matchers
 * Add beforeAll, afterEach and afterAll
 * testing of http apps
 * Mocks and Stubs
