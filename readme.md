@@ -29,6 +29,37 @@ To use:
         i.should().beEqual(1);
       });
 
+  Async
+  =====
+  
+    describe("Async spec").
+      it("Should only assert at the end", function (atEnd) {
+        
+        var n = 0;
+        setTimeout(function(){
+          ++n;
+        }, 200);
+
+        atEnd(function () {
+          n.should().beEqual(1);
+        });
+
+      });
+
+  Mock
+  =====
+
+  Only works in node v0.3.3-pre and above
+  
+  describe("Mock standard lib").
+    it("Should mockout standard lib", function () {
+      fsMock = mock("fs");
+      fs = require('fs');
+      
+      fs.should().beEqual(fsMock);
+
+    });
+
 Examples
 ========
 
