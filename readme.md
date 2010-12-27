@@ -30,7 +30,6 @@ To use:
       });
 
   Async
-  =====
   
     describe("Async spec").
       it("Should only assert at the end", function (atEnd) {
@@ -47,7 +46,6 @@ To use:
       });
 
   Mock
-  =====
 
   Only works in node v0.3.3-pre and above
   
