@@ -10,7 +10,7 @@
  * Spec My Node version.
  */
 
-var version = '0.0.5';
+var version = '0.0.6';
 
 
 var spec = require('../lib/Jody.js'),

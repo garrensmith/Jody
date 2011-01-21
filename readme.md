@@ -70,8 +70,8 @@ Todo
 * Watch files and autotest
 * describe or context within spec
 * more matchers
-* Add beforeAll, afterEach and afterAll
+* Add  afterEach 
 * testing of http apps
-* Mocks and Stubs
+* Mocks and Stubs -- basic implementation done
 
 

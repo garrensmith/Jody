@@ -72,4 +72,19 @@ describe("Describe spec with After all").
 
     specCase.afterAllMethodBody.should().beEqual(afterAllFunction);
   });
+
+describe("Describe spec with before All").
+  it("Should create before method body", function () {
+    var beforeAllFunction = function () {};
+
+    describe_under_test("example spec with after all").
+      beforeAll(beforeAllFunction).
+      it("a spec", function () {})
+      
+
+    var specCase = specs.pop();
+
+    specCase.beforeAllMethodBody.should().beEqual(beforeAllFunction);
+
+  });
   

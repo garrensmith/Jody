@@ -66,3 +66,17 @@ describe("Array matchers").
     test.should().contain(3);
   });
 
+var beforeAllCounter = 0;
+
+describe("Before All").
+  beforeAll(function () {
+    beforeAllCounter += 1;
+  }).
+  it("One before all ", function () {
+    beforeAllCounter.should().beEqual(1);
+  }).
+  it("One before all ", function () {
+    beforeAllCounter.should().beEqual(1);
+  })
+
+
