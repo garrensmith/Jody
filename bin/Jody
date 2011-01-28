@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 /*!
- * Spec My Node
+ * Jody
  * Copyright(c) Garren Smith <garrens@drivensoftware.net>
  * (MIT Licensed)
  */
 
 /**
- * Spec My Node version.
+ * Jody version.
  */
 
 var version = '0.0.7';
