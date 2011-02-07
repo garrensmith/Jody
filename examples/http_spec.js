@@ -3,6 +3,8 @@ var describe = require('Jody').describe
 , express = require('express');
 
 var testServer = http.createServer(function (req, res) {
+  console.log("URL: " + req.url);
+
 
   if (req.method === "POST") {
     //console.dir(req);
@@ -17,6 +19,12 @@ var testServer = http.createServer(function (req, res) {
 
     req.on('end', function () {
       res.end(body + ' received\n');
+    });
+
+  } else if (req.url === '/foo' ){
+     res.writeHead(200, {'Content-Type': 'text/plain'});
+    req.on('end', function () {
+      res.end('bar');
     });
 
   } else {
@@ -44,75 +52,51 @@ res.send('Hello From Express');
 });*/
 
 
-
-
-var Server_test_utils = function (server) {
+var Server_test_utils = function (server, port) {
   var self = this;
 
-  var test_server = server;
+  test_server = server;
+  test_server.connections = 0;
 
-  self.get = function (options, cb) {
-    var body = "";
-
-
-    test_server.listen(8123, '127.0.0.1');
-
+  self.request = function (request_options, cb) {
     var options = {
-      host: '127.0.0.1',
-      port: 8123,
-      path: '/',
-      method: 'GET'
+        host: '127.0.0.1',
+        port: port || 8123,
+        path: request_options.url ||  '/',
+        method: request_options.method || 'GET',
+        body:  request_options.body || ''
     };
 
-    var req = http.request(options, function(res) {
+    console.log("Connections: " + test_server.connections);
+    if (test_server.connections === 0) {
+      test_server.listen(8123, '127.0.0.1');
+    }
+
+    test_server.connections += 1;
+
+
+     var req = http.request(options, function(res) {
+      res.body = "";
+
       console.log('STATUS: ' + res.statusCode);
       console.log('HEADERS: ' + JSON.stringify(res.headers));
-      res.setEncoding('utf8');
 
+      res.setEncoding('utf8');
       res.on('data', function (chunk) {
         console.log('BODY: ' + chunk);
-        body += chunk;
+        res.body += chunk;
       });
 
       res.on('end', function () {
-        test_server.close();
-        cb(body);
-      });
-    });
+        test_server.connections += -1;
 
-    // write data to request body
-    req.write('data\n');
-    req.write('data\n');
-    req.end();
+        console.log("End connections: " + test_server.connections);
+        if (test_server.connections === 0) {
+          console.log("Closing server");
+          test_server.close();
+        }
 
-  };
-
-  self.post = function (url, request_options, cb) {
-     var body = "";
-     test_server.listen(8123, '127.0.0.1');
-
-    var options = {
-      host: '127.0.0.1',
-      port: 8123,
-      path: '/',
-      method: 'POST',
-      body:  request_options.body || ''
-
-    };
-
-    var req = http.request(options, function(res) {
-      console.log('STATUS: ' + res.statusCode);
-      console.log('HEADERS: ' + JSON.stringify(res.headers));
-      res.setEncoding('utf8');
-
-      res.on('data', function (chunk) {
-        console.log('BODY: ' + chunk);
-        body += chunk;
-      });
-
-      res.on('end', function () {
-        test_server.close();
-        cb(body);
+        cb(res);
       });
     });
 
@@ -124,32 +108,52 @@ var Server_test_utils = function (server) {
 
   };
 
+  self.get = function (url, request_options, cb) {
+      request_options.method = 'GET';
+      request_options.url = url;
+      self.request(request_options, cb);
+  };
+
+  self.post = function (url, request_options, cb) {
+    request_options.method = 'POST';
+    request_options.url = url;
+
+    self.request(request_options, cb);
+  };
+
   return self;
 
 };
 
 /* Return header and body
- * refactor post and get
+ * turn verbose on and off
  */
+
+var server = new Server_test_utils(testServer);
 
 describe('Http Server').
 it("should Get with basic http server", function () {
-  /* var server = new Server_test_utils(testServer);
+     var server = new Server_test_utils(testServer);
 
-     server.get({}, function (response) {
+     server.get('/', {}, function (response) {
 
      console.log("RESPONSE " + response);
-     response.should().contain('Hello World');
-     });*/
+     response.body.should().contain('Hello World');
+     });
 
 }).
 it("Should Post data to server", function () {
-  var server = new Server_test_utils(testServer);
-
   server.post('/', {body: "info"}, function (response) {
-
-    response.should().contain('info received');
+    response.headers["content-type"].should().beEqual("text/plain");
+    response.body.should().contain('info received');
   });
+}).
+it("should get with specific url", function () {
+
+   server.get('/foo',{}, function (response) {
+     console.log("bar:" + response);
+    response.body.should().contain('bar');
+   });
 
 }).
 it('should Get with basic express server', function () {
