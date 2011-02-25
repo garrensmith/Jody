@@ -1,14 +1,21 @@
-{ "name": "Jody",
+{
+  "name": "Jody",
+  "description": "BDD testing framework for nodejs",
   "version": "0.0.7",
-  "description": "Descriptive BDD Framework",
-  "author": "Garren Smith <garrens@drivensoftware.net>",
-   "homepage" : "http://github.com/garrensmith/Jody",
- "repository" :
-  { "type" : "git"
-  , "url" : "http://github.com/garrensmith/Jody.git"
-  },  
-  "bin": { 
-    "Jody": "./bin/Jody",
-  },  
-   "directories" : { "lib": "./lib" }}
-
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/garrensmith/Jody.git"
+  },
+  "author": "Garren Smith <garren.smith@gmail.com> (www.garrensmith.com)",
+  "main": "bin/Jody",
+  "directories": {
+    "lib": "./lib"
+  },
+   "bin" : { "Jody" : "./bin/Jody" },
+  "scripts": {
+    "test": "Jody"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
