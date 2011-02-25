@@ -10,6 +10,5 @@
   "bin": { 
     "Jody": "./bin/Jody",
   },  
-  "main" : "./lib/Jody"
-}
+   "directories" : { "lib": "./lib" }}
 
