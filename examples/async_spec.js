@@ -2,46 +2,44 @@ var describe = require('Jody').describe;
 var inspect = require('sys').inspect;
 var assert = require('assert');
 
+var asyncTest = function (cb) {
+  setTimeout(function () {
+   cb(true, false); 
+  }, 200);
+};
+
+var n = 0;
+
+var asyncAdder = function (cb) {
+  setTimeout(function () {
+    n++;
+    cb(n); 
+  }, 200);
+
+};
+
 describe("Async calls").
-it ("Should handle async", function (evalCallback) {
+it ("Should handle async", function (async) {
 
-  var n = 0;
-  setTimeout(function(){
-    ++n;
-    assert.ok(true);
-  }, 200);
-  setTimeout(function(){
-    ++n;
-    assert.ok(true);
-  }, 200);
+  asyncAdder(async(function (n) {
+    n.should().beEqual(1);
+  }));;
 
-  evalCallback( function () {
-    assert.equal(2, n, 'Ensure both timeouts are called');
+  asyncAdder(async(function (n) {
     n.should().beEqual(2);
-  });
-
+  }));
+  
 }).
-it ("Should recognise failed async test", function (evalCallback) {
-  var n = 0;
-  setTimeout(function(){
-    ++n;
-    assert.ok(true);
-  }, 200);
-
-  evalCallback( function () {
-    assert.equal(2, n, 'Ensure both timeouts are called');
-    n.should().beEqual(2);
-  });
-
+it ("Should recognise failed async test", function (async) {
+  asyncAdder(async(function (n) {
+    n.should().beEqual(5);
+  }));
 }).
-it ("Another passing async test", function (evalCallback) {
-  var n = false;
-  setTimeout(function(){
-    n = true;
-    assert.ok(true);
-  }, 200);
+it ("Should handle multiple arguments", function (async) {
 
-  evalCallback (function () {
-    n.should().beTrue();
-  });
-});
+  asyncTest(async(function(val1,val2){
+    val1.should().beTrue();
+    val2.should().beFalse();
+  }));
+    
+ });

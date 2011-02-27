@@ -32,6 +32,8 @@ describe("Spec Runner").
         var specCase = function() {};
     
     specCase.desc = "test";
+
+    specCase.beforeAllMethodBody = function () {}
     specCase.beforeEachMethodBody = function () {
       beforeCalled = true;
     };

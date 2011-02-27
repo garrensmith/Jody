@@ -9,6 +9,7 @@
   },  
   "bin": { "Jody": "./bin/Jody" },  
   "directories" : { "lib": "./lib" },
+  "main": "./lib/Jody.js",
 
   "engines": {
     "node": "*"
