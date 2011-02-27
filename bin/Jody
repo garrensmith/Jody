@@ -10,7 +10,7 @@
  * Jody version.
  */
 
-var version = '0.0.7';
+var version = '0.2.0pre';
 
 
 var spec = require('../lib/Jody.js'),
