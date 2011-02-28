@@ -30,24 +30,21 @@ To use:
       });
 
   Async
+    Add the function *async* to each callback that you want to test again. This will allow for Jody to determine if the test was successful
   
     describe("Async spec").
       it("Should only assert at the end", function (atEnd) {
         
-        var n = 0;
-        setTimeout(function(){
-          ++n;
-        }, 200);
-
-        atEnd(function () {
-          n.should().beEqual(1);
-        });
-
+        asyncTest(async(function(val1,val2){
+          val1.should().beTrue();
+          val2.should().beFalse();
+        }));
       });
 
+  
   Mock
 
-  Only works in node v0.3.3-pre and above
+  Only works in node v0.4.0 and above
   
   describe("Mock standard lib").
     it("Should mockout standard lib", function () {
