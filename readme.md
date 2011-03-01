@@ -17,7 +17,7 @@ or
 Create specs in ./spec and then:
     run Jody 
 
-To use:
+## Usage
     var describe = require('Jody').describe;
 
     describe("New set of specs").
@@ -29,7 +29,7 @@ To use:
         i.should().beEqual(1);
       });
 
-  Async
+## Async
     Add the function *async* to each callback that you want to test again. This will allow for Jody to determine if the test was successful
   
     describe("Async spec").
@@ -41,8 +41,10 @@ To use:
         }));
       });
 
-  
-  Mock
+## Http
+  See examples/http_spec.js 
+
+## Mock
 
   Only works in node v0.4.0 and above
   
