@@ -10,6 +10,8 @@
  * Jody version.
  */
 
+process.env.NODE_ENV='test' // set test environment
+
 var version = '0.2.0pre';
 
 
