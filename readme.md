@@ -78,5 +78,6 @@ Todo
 * Add  afterEach 
 * testing of http apps
 * Mocks and Stubs -- basic implementation done
+* Add a has async occured matcher
 
 
