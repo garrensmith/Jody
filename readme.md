@@ -62,6 +62,12 @@ Examples
 
 See ./spec folder for examples on use
 
+Feedback
+========
+
+For suggestions, help or feedback go to [https://convore.com/jody/](https://convore.com/jody/)
+
+
 Todo
 ====
 
