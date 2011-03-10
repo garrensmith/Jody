@@ -81,8 +81,17 @@ files.forEach (function (file) {
   console.log("executing " + file);
 });
 
-runner.runAllSpecs();
-var setExit = false;
+var specRunner = new runner.Runner();
+
+specRunner.on('done', function () {
+  console.log("runner done");
+  reporter.displayResults();
+});
+
+specRunner.run(spec.specs);
+
+//runner.runAllSpecs();
+/*var setExit = false;
 
 process.addListener('exit', function () {
   if (setExit === true) { return; }  
@@ -95,6 +104,6 @@ process.addListener('exit', function () {
   }
   process.exit(0); 
 
-});
+});*/
 
 // vim:ft=javascript
