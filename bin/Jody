@@ -84,7 +84,6 @@ files.forEach (function (file) {
 var specRunner = new runner.Runner();
 
 specRunner.on('done', function () {
-  console.log("runner done");
   reporter.displayResults();
 });
 
