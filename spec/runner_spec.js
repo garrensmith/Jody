@@ -1,4 +1,5 @@
 var runner = require('../lib/runner');
+var runner = require('../lib/runner').Runner
 var describe = require('Jody').describe;
 
 /*describe("Run all Specs").
@@ -21,7 +22,7 @@ var describe = require('Jody').describe;
     specsRun.should().beEqual(2);
   });*/
 
-var beforeCalled = false;
+/*var beforeCalled = false;
 var afterAllCalled = false;
 var specCalled = false;
 var specFail = function () {};
@@ -63,7 +64,7 @@ describe("Spec Runner").
     };
 
     specCase.specs = [specPass, specFail];
-
+    var runner = new Runner();
     runner.runSpecCase(specCase);
 
   }).
@@ -77,7 +78,7 @@ describe("Spec Runner").
   it("Should catch failing test", function () {
     specFail.passed.should().beFalse();
     specFail.error.message.should().beEqual("error");
-  });
+  });*/
 
 
   
