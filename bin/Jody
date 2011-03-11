@@ -51,6 +51,10 @@ while (args.length) {
       console.log(version);
       process.exit(1);
       break;
+    case '-d':
+    case '--dir':
+      loadFiles(args.shift());
+      break
 
     default:
       if (/\.js$/.test(arg)) {
@@ -60,11 +64,11 @@ while (args.length) {
   }
 }
 
-if (files.length === 0) {
-  try {
-    fs.readdirSync('spec').map(function(file){
+function loadFiles(dir) {
+try {
+    fs.readdirSync(dir).map(function(file){
       if (/\.js$/.test(file)) {
-        files.push('spec/' + file); 
+        files.push(dir + '/' + file); 
       }
 
     });
@@ -73,6 +77,11 @@ if (files.length === 0) {
     process.exit(1);
   }
   console.log('files ' + files);
+}
+
+
+if (files.length === 0) {
+  loadFiles('spec');
 }
 
 files.forEach (function (file) {
