@@ -1,38 +1,26 @@
 var describe = require('Jody').describe,
     Spec = require('../lib/Jody').Spec,
     SpecCase = require('../lib/Jody').SpecCase,
-    SpecRunner = require('../lib/runner').Runner,
-    runner = require('../lib/runner').runSpecCase;
+    Runner = require('../lib/runner').Runner;
 
-  describe("Spec Done Event").
+describe("Spec Done Event").
   it("Should fire when done", function (async) {
     var spec = new Spec("test spec"),
     fired = false;
-
-    spec.on('done', async(function () {
-      fired = false;
-      fired.should().beTrue();
-    }));
-
+    spec.on('done', async("fired"));
     spec.check_if_done();
-
   });
 
 describe("SpecCase Done Event").
   it("Should fire on spec complete", function (async) {
 
-    var fired = false;
-
     var specCase = new SpecCase("testing");
 
     specCase.it("spec1", function () {});
 
-    specCase.on('done', async(function() {
-      fired = false;
-      fired.should().beTrue();
-    }));
-
-    runner(specCase);
+    specCase.on('done', async("fired"));
+    var runner = new Runner();
+    runner.runSpecCase(specCase);
 
   }).
   it("Should fire on all specs complete", function (async) {
@@ -46,18 +34,15 @@ describe("SpecCase Done Event").
     specCase.it("spec3", function () {});
 
 
-    specCase.on('done', async(function() {
-      fired = false;
-      fired.should().beTrue();
-    }));
+    specCase.on('done',  async("fired"));
 
-    runner(specCase);
+    var runner = new Runner();
+    runner.runSpecCase(specCase);
 
   });
 
 describe('Runner').
   it('Should fire on specCase complete', function (async) {
-    var fired = false;
 
     var specCase = new SpecCase("testing");
 
@@ -65,17 +50,14 @@ describe('Runner').
     specCase.it("spec2", function () {});
     specCase.it("spec3", function () {});
 
-    var runner = new SpecRunner();
+    var runner = new Runner();
 
-    runner.on('done', async(function() {
-      console.log("boom");
-      fired = false;
-      fired.should().beTrue();
-    }));
-
+    runner.on('done', async('fired'));
     specs = [];
     specs.push(specCase);
+
     runner.run(specs);
+
   }).
   it('Should fire on all specCases complete', function (async) {
     var fired = false;
@@ -100,13 +82,9 @@ describe('Runner').
     specCase3.it("spec3", function () {});
 
 
-    var runner = new SpecRunner();
+    var runner = new Runner();
 
-    runner.on('done', async(function() {
-      console.log("boom");
-      fired = false;
-      fired.should().beTrue();
-    }));
+    runner.on('done', async('fired'));
 
     specs = [];
     specs.push(specCase1);
