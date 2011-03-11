@@ -54,9 +54,6 @@ describe("Describe with new spec").
   }).
   it("Should set spec failed until proven passed", function () {
     spec_under_test.passed.should().beFalse();
-  }).
-  it("Should contain empty error message", function () {
-    spec_under_test.error.should().beEqual("");
   });
 
 
