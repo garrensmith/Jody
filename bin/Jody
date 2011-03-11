@@ -89,8 +89,7 @@ specRunner.on('done', function () {
 
 specRunner.run(spec.specs);
 
-//runner.runAllSpecs();
-/*var setExit = false;
+var setExit = false;
 
 process.addListener('exit', function () {
   if (setExit === true) { return; }  
@@ -103,6 +102,6 @@ process.addListener('exit', function () {
   }
   process.exit(0); 
 
-});*/
+});
 
 // vim:ft=javascript
