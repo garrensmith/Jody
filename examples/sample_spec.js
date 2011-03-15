@@ -80,3 +80,14 @@ describe("Before All").
   })
 
 
+describe("After All").
+  it("Should reset variable after all finished", function (async) {
+    setTimeout(async(function () {
+      console.log("timeout");
+    }), 200);
+  }).
+  afterAll(function () {
+    console.log("after all called");
+  });
+
+
