@@ -103,18 +103,4 @@ specRunner.on('done', function () {
 
 specRunner.run(spec.specs);
 
-
-/*process.addListener('exit', function () {
-  if (setExit === true) { return; }  
-
-  runner.processCallbacks();
-  reporter.displayResults(); 
-  setExit = true;
-  if (reporter.failedSpecs) {
-    process.exit(1);    
-  }
-  process.exit(0); 
-
-});*/
-
 // vim:ft=javascript
