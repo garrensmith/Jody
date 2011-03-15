@@ -1,5 +1,5 @@
 { "name": "Jody",
-  "version": "0.2.0beta1",
+  "version": "0.2.0beta2",
   "description": "Descriptive BDD Framework for nodejs",
    "author": "Garren Smith <garren.smith@gmail.com> (www.garrensmith.com)",
    "homepage" : "http://github.com/garrensmith/Jody",

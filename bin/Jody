@@ -12,7 +12,7 @@
 
 process.env.NODE_ENV='test' // set test environment
 
-var version = '0.2.0pre';
+var version = '0.2.0beta2';
 
 
 var spec = require('../lib/Jody.js'),
