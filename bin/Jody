@@ -24,9 +24,6 @@ var spec = require('../lib/Jody.js'),
     args = process.argv.slice(2),
     files = [];    
 
-var inspect = require('sys').inspect;
-//console.log(args[0]);
-//
 var help = ''
 + 'Usage: Jody [options] <file ...>'
 + '\n'
