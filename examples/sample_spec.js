@@ -86,8 +86,9 @@ describe("After All").
       console.log("timeout");
     }), 200);
   }).
-  afterAll(function () {
+  afterAll(function (done) {
     console.log("after all called");
+    done();
   });
 
 
