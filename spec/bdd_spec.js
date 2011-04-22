@@ -53,13 +53,13 @@ describe("Describe with new spec").
     spec_under_test.methodBody.should().beEqual(itFunction);
   }).
   it("Should set spec failed until proven passed", function () {
-    spec_under_test.passed.should().beFalse();
+    spec_under_test.passed.should().beEqual('unset');
   });
 
 
 describe("Describe spec with After all").
   it("Should create after all method", function () {
-    var afterAllFunction = function () {};
+    var afterAllFunction = function (cb) {cb();};
 
     describe_under_test("example spec with after all").
       it("a spec", function () {}).
