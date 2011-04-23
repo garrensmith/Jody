@@ -7,7 +7,6 @@
  */
 
 /**
- * Jody version.
  */
 
 process.env.NODE_ENV='test' // set test environment
@@ -54,15 +53,15 @@ while (args.length) {
       break
 
     default:
-      if (/\.js$/.test(arg)) {
-        files.push(arg);
-      }
-      break;
+        if (/\.js$/.test(arg)) {
+          files.push(arg);
+        }
+        break;
   }
 }
 
 function loadFiles(dir) {
-try {
+  try {
     fs.readdirSync(dir).map(function(file){
       if (/\.js$/.test(file)) {
         files.push(dir + '/' + file); 
@@ -98,6 +97,11 @@ specRunner.on('done', function () {
 
 });
 
-specRunner.run(spec.specs);
+specRunner.on('beforeAllDone', function () {
+  specRunner.run(spec.specs);
+});
+
+specRunner.beforeAllSpecs();
+
 
 // vim:ft=javascript
