@@ -21,7 +21,8 @@ var spec = require('../lib/Jody.js'),
     path = require('path'),
     fs = require('fs'),
     args = process.argv.slice(2),
-    files = [];    
+    files = [],
+    spec_helper_loaded = false;
 
 var help = ''
 + 'Usage: Jody [options] <file ...>'
@@ -55,6 +56,9 @@ while (args.length) {
     default:
         if (/\.js$/.test(arg)) {
           files.push(arg);
+          if (arg === 'spec_helper.js') {
+            spec_helper_loaded = true;
+          }
         }
         break;
   }
@@ -77,7 +81,7 @@ function loadFiles(dir) {
 
 
 if (files.length === 0) {
-  loadFiles('spec');
+  loadFiles('specs');
 }
 
 files.forEach (function (file) {
@@ -85,6 +89,10 @@ files.forEach (function (file) {
   require(file);
   console.log("executing " + file);
 });
+
+if (!spec_helper_loaded) {
+  require(process.cwd() + '/specs/spec_helper.js');
+}
 
 var specRunner = new runner.Runner();
 
