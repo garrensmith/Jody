@@ -7,7 +7,7 @@
  */
 
 /**
- */
+*/
 
 process.env.NODE_ENV='test' // set test environment
 
@@ -22,16 +22,19 @@ var spec = require('../lib/Jody.js'),
     fs = require('fs'),
     args = process.argv.slice(2),
     files = [],
-    spec_helper_loaded = false;
+    spec_helper_loaded = false,
+    fileWatching = false;
 
 var help = ''
 + 'Usage: Jody [options] <file ...>'
 + '\n'
 + '\nOptions:'
++ '\n  -d, --dir            Run specs in directory'
++ '\n  -w, --watch          Watch ./specs for changes and run'
 + '\n  -v, --version        Output version number'
 + '\n  -h, --help           Display help information'
 + '\n'
-+ '\n If no file given, will look in ./spec for spec';
++ '\n If no file given, will look in ./specs for specs to run';
 
 
 while (args.length) {
@@ -40,19 +43,23 @@ while (args.length) {
     case '-h':
     case '--help':
       console.log(help + '\n');
-      process.exit(1);
+      process.exit(0);
       break;
 
     case '-v':
     case '--version':
       console.log(version);
-      process.exit(1);
+      process.exit(0);
       break;
     case '-d':
     case '--dir':
       loadFiles(args.shift());
       break
-
+    case '-w':
+    case '--watch':
+        fileWatching = true;
+        watchForChanges();
+        break;
     default:
         if (/\.js$/.test(arg)) {
           files.push(arg);
@@ -79,37 +86,80 @@ function loadFiles(dir) {
   console.log('files ' + files);
 }
 
+function spawn_jody(file) {
+   var jody = spawn('Jody',[file]);
+  jody.stdout.on('data', function (data) {
+    console.log(data.toString());
+  });
 
-if (files.length === 0) {
-  loadFiles('specs');
-}
+  jody.stderr.on('data', function (data) {
+    console.log(data.toString());
+  });
 
-files.forEach (function (file) {
-  file = path.join(process.cwd(), file);
-  require(file);
-  console.log("executing " + file);
-});
+  jody.on('exit', function (code) {
+  });
 
-if (!spec_helper_loaded) {
-  require(process.cwd() + '/specs/spec_helper.js');
-}
+};
 
-var specRunner = new runner.Runner();
+function watchForChanges() {
+  console.log("Watching files");
+  spawn = require('child_process').spawn;
 
-specRunner.on('done', function () {
-  reporter.displayResults();
-  if (reporter.failedSpecs) {
-    process.exit(1);
+  fs.readdirSync('./specs').forEach(function (file) {
+    if (!(/\.js$/.test(file))) {
+      return;
+    }
+    console.log("watching " + file);
+
+    fs.watchFile('./specs/' +file,{ persistent: true, interval: 1000 }, function (curr, prev) {
+      /*console.log("before ");
+      console.dir(prev);
+      console.log(" after ");
+      console.dir(curr);*/
+      if (curr.mtime !== prev.mtime) {
+        console.log(file + " has been changed. Running tests...");
+        spawn_jody('./specs/' + file);
+     }
+    });
+  });
+  //spawn_jody();
+};
+
+
+if (fileWatching == false) {
+  if (files.length === 0 ) {
+    loadFiles('specs');
   }
-  process.exit(0);
 
-});
 
-specRunner.on('beforeAllDone', function () {
-  specRunner.run(spec.specs);
-});
+  files.forEach (function (file) {
+    file = path.join(process.cwd(), file);
+    require(file);
+    console.log("executing " + file);
+  });
 
-specRunner.beforeAllSpecs();
+  if (!spec_helper_loaded) {
+    try {
+      require(process.cwd() + '/specs/spec_helper.js');
+    } catch (e) { }
+  }
 
+  var specRunner = new runner.Runner();
+
+  specRunner.on('done', function () {
+    reporter.displayResults();
+    if (reporter.failedSpecs) {
+      process.exit(1);
+    }
+    process.exit(0);
+
+  });
+
+  specRunner.on('beforeAllDone', function () {
+    specRunner.run(spec.specs);
+  });
+
+  specRunner.beforeAllSpecs();
+}
 
 // vim:ft=javascript
