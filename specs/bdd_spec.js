@@ -6,7 +6,6 @@ var createdSpecCase
 describe("Describe").
   beforeEach( function () {
     describe_under_test("example spec");
-    
     createdSpecCase = specs.pop();
   }).
   it("Should set specified description", function () {
