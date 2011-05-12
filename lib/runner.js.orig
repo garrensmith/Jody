@@ -62,7 +62,36 @@ var Runner = exports.Runner = function () {
       try {
         specCase.beforeEachMethodBody();
 
+<<<<<<< HEAD
+        spec.methodBody(function (fn) {
+          spec.active_asyncs += 1;
+
+          if(typeof(fn) === 'string') {
+            spec.passed = false;
+            spec.error.message = "Callback was not called!";
+          return function () {
+            spec.passed = true;
+            spec.error.message = ""
+          spec.async_complete();
+          };
+          }
+          return function() {
+            try {
+              fn(arguments[0],arguments[1],arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]); // super hacky need a fix for this, but only way to pass through multiple arguments with else passing through an array
+            } catch(e) {
+              spec.passed = false;
+              spec.error = e;
+            }
+
+            if (spec.passed == "unset") {
+              spec.passed = true;
+            }
+            spec.async_complete();            
+          };
+        });
+=======
         spec.methodBody(async_handler(spec));
+>>>>>>> small refactoring
 
         if(spec.error.message === "" || !spec.error.message) {
           spec.passed = true;
