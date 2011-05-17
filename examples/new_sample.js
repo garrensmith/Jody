@@ -2,12 +2,12 @@ var describe = require('Jody').describe;
 
 var value = "";
 
-require.('Jody').configure.beforeAll(function () {
+/*require.('Jody').configure.beforeAll(function () {
       value = "set in beforeAll"
    
-});
+});*/
 
-describe('New Api').
+describe('New Api').   
     it("Should have a global before all", function () {
        value.should().beEqual("npmset in beforeAll");
     }).

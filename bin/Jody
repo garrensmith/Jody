@@ -14,7 +14,7 @@ process.env.NODE_ENV='test' // set test environment
 var version = '0.2.0beta5';
 
 
-var spec = require('../lib/Jody.js'),
+var Jody = require('../lib/Jody.js'),
     runner = require('../lib/runner.js'),
     matchers = require('../lib/matchers.js'),
     reporter = require('../lib/reporter.js'),
@@ -155,11 +155,11 @@ if (fileWatching == false) {
 
   });
 
-  specRunner.on('beforeAllDone', function () {
-    specRunner.run(spec.specs);
-  });
+ // specRunner.on('beforeAllDone', function () {
+    specRunner.run(Jody.specification_groups);
+ // });
 
-  specRunner.beforeAllSpecs();
+  //specRunner.beforeAllSpecs();
 }
 
 // vim:ft=javascript
