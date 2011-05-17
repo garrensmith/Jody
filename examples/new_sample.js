@@ -9,38 +9,32 @@ var value = "";
 
 describe('New Api').   
     it("Should have a global before all", function () {
-       value.should().beEqual("npmset in beforeAll");
+       value.should().beEqual("set in beforeAll");
     }).
-    it("Should make async easy", function () {
+    it("Should make async easy", function (async) {
         var counter = 0;
         
-        setTimeout(function () {
+        setTimeout(async(function () {
             counter++;
-            
-            counter.should().beEqual(1);
-            async_complete();
-        }, 10);
+            counter.should().beEqual(1);            
+        }), 60);
         
-        async_wait();        
+        
     }).
-    it("Should support multiple callbacks", function () {
+    it("Should support multiple callbacks", function (async) {
          var counter = 0;
         
-        setTimeout(function () {
+        setTimeout(async(function () {
             counter++;
-            
             counter.should().beEqual(1);
-            async_complete();
-        },10);
-        
-        setTimeout(function () {
-            counter++;
             
-            counter.should().beEqual(2);
-            async_complete();
-        },20);
+        }),10);
         
-        async_wait(2);
+        setTimeout(async(function () {
+            counter++;
+            counter.should().beEqual(2);            
+        }),20);        
+        
     });
     
 

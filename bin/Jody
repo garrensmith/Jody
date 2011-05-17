@@ -162,4 +162,9 @@ if (fileWatching == false) {
   //specRunner.beforeAllSpecs();
 }
 
+process.on('exit', function () {
+    reporter.displayResults();
+});
+
+
 // vim:ft=javascript
