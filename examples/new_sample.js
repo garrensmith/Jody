@@ -2,7 +2,7 @@ var describe = require('Jody').describe;
 
 var value = "";
 
-require.('Jody').beforeAll(function () {
+require.('Jody').configure.beforeAll(function () {
       value = "set in beforeAll"
    
 });
