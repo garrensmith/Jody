@@ -1,6 +1,6 @@
 { 
     "name": "Jody",
-    "version": "0.2.dev",
+    "version": "0.2.0dev1",
     "description": "Descriptive BDD Framework for nodejs",
     "author": "Garren Smith <garren.smith@gmail.com> (www.garrensmith.com)",
     "homepage" : "http://github.com/garrensmith/Jody", 
@@ -13,6 +13,9 @@
     "main": "./lib/Jody.js",
     "engines": {
         "node": "*"
+    },
+    "dependancies": {
+        "async":"*"   
     }
 }
 
