@@ -154,10 +154,9 @@ if (fileWatching == false) {
     process.exit(0);
 
   });
-
- // specRunner.on('beforeAllDone', function () {
-    specRunner.run(Jody.specification_groups);
- // });
+ 
+ specRunner.run(Jody.specification_groups);
+ 
 
   //specRunner.beforeAllSpecs();
 }

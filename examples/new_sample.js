@@ -1,15 +1,24 @@
 var describe = require('Jody').describe;
 
-var value = "";
+var beforeAllValue = beforeEachValue = "";
 
 require('Jody').configure.beforeAll(function (done) {
-      value = "set in beforeAll";
+      beforeAllValue = "set in beforeAll";
       done();   
 });
 
-describe('New Api').   
+describe('New Api').
+    beforeEach(function (done) {
+        beforeEachValue = "beforeEachValue"
+        done();
+    }).
     it("Should have a global before all", function () {
-       value.should().beEqual("set in beforeAll");
+        console.log("boom");
+       beforeAllValue.should().beEqual("set in beforeAll");       
+    }).
+    it("Should have a before Each", function () {
+        console.log(beforeEachValue);
+       beforeEachValue.should().beEqual("beforeEachValue");
     }).
     it("Should make async easy", function (async) {
         var counter = 0;
@@ -17,17 +26,17 @@ describe('New Api').
         setTimeout(async(function () {
             counter++;
             counter.should().beEqual(1);            
-        }), 60);
-        
+        }), 60);    
         
     }).
     it("Should support multiple callbacks", function (async) {
          var counter = 0;
         
-        setTimeout(async(function () {
+        setTimeout(async(function () {      
             counter++;
-            counter.should().beEqual(1);
-            
+            console.log("timer " +  counter);            
+            counter.should().beEqual(3);
+            console.log("timer " +  counter);
         }),10);
         
         setTimeout(async(function () {
