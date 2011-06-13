@@ -41,7 +41,7 @@ it("Should assert failing test", function () {
 
   testObj.voice.should().beEqual("hello");
 
-});;
+});
 
 describe("Exception").
 it("Should throw exception", function () {

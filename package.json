@@ -1,20 +1,22 @@
-{ "name": "Jody",
-  "version": "0.2.0beta5",
-  "description": "Descriptive BDD Framework for nodejs",
-   "author": "Garren Smith <garren.smith@gmail.com> (www.garrensmith.com)",
-   "homepage" : "http://github.com/garrensmith/Jody",
- "repository" :
-  { "type" : "git"
-  , "url" : "http://github.com/garrensmith/Jody.git"
-  },  
-  "bin": { "Jody": "./bin/Jody" },  
-  "directories" : { "lib": "./lib" },
-  "main": "./lib/Jody.js",
-
-  "engines": {
-    "node": "*"
-  }
-
+{ 
+    "name": "Jody",
+    "version": "0.2.0dev1",
+    "description": "Descriptive BDD Framework for nodejs",
+    "author": "Garren Smith <garren.smith@gmail.com> (www.garrensmith.com)",
+    "homepage" : "http://github.com/garrensmith/Jody", 
+    "repository" :
+    {   "type" : "git", 
+        "url" : "http://github.com/garrensmith/Jody.git"
+    },    
+    "bin": { "Jody": "./bin/Jody" },  
+    "directories" : { "lib": "./lib" },
+    "main": "./lib/Jody.js",
+    "engines": {
+        "node": "*"
+    },
+    "dependancies": {
+        "async":"*"   
+    }
 }
 
 
