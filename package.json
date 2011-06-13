@@ -2,6 +2,7 @@
     "name": "Jody",
     "version": "0.2.0",
     "description": "Descriptive BDD Framework for nodejs",
+    "keywords": ["bdd", "testing", "unit"],
     "author": "Garren Smith <garren.smith@gmail.com> (www.garrensmith.com)",
     "homepage" : "http://github.com/garrensmith/Jody", 
     "repository" :
