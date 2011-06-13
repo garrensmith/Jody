@@ -26,6 +26,7 @@ it ("Should handle async", function (async) {
   }));;
 
   asyncAdder(async(function (n) {
+    console.dir(n);
     n.should().beEqual(2);
   }));
   

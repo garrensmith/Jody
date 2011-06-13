@@ -39,7 +39,7 @@ describe('New Api').
         
         setTimeout(async(function () {
             counter++;
-            counter.should().beEqual(3);            
+            counter.should().beEqual(2);            
         }),350);        
         
     });
