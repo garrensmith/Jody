@@ -13,12 +13,10 @@ describe('New Api').
         done();
     }).
     it("Should have a global before all", function () {
-        console.log("boom");
-       beforeAllValue.should().beEqual("set in beforeAll");       
+        beforeAllValue.should().beEqual("set in beforeAll");       
     }).
     it("Should have a before Each", function () {
-        console.log(beforeEachValue);
-       beforeEachValue.should().beEqual("beforeEachValue");
+      beforeEachValue.should().beEqual("beforeEachValue");
     }).
     it("Should make async easy", function (async) {
         var counter = 0;
@@ -35,14 +33,14 @@ describe('New Api').
         setTimeout(async(function () {      
             counter++;
             console.log("timer " +  counter);            
-            counter.should().beEqual(3);
+            counter.should().beEqual(1);
             console.log("timer " +  counter);
         }),10);
         
         setTimeout(async(function () {
             counter++;
-            counter.should().beEqual(2);            
-        }),20);        
+            counter.should().beEqual(3);            
+        }),350);        
         
     });
     
