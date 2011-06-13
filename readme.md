@@ -44,23 +44,10 @@ Create specs in ./spec and then:
 ## Http
   See examples/http_spec.js 
 
-## Mock
-
-  Only works in node v0.4.0 and above
-  
-  describe("Mock standard lib").
-    it("Should mockout standard lib", function () {
-      fsMock = mock("fs");
-      fs = require('fs');
-      
-      fs.should().beEqual(fsMock);
-
-    });
-
 Examples
 ========
 
-See ./spec folder for examples on use
+See ./examples folder for examples on use
 
 Feedback
 ========
@@ -68,16 +55,5 @@ Feedback
 For suggestions, help or feedback go to [https://convore.com/jody/](https://convore.com/jody/)
 
 
-Todo
-====
-
-* Improve error messages
-* Watch files and autotest
-* describe or context within spec
-* more matchers
-* Add  afterEach 
-* testing of http apps
-* Mocks and Stubs -- basic implementation done
-* Add a has async occured matcher
 
 
