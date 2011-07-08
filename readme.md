@@ -44,6 +44,23 @@ Create specs in ./spec and then:
 ## Http
   See examples/http_spec.js 
 
+## Before All and After All Specs
+
+  For functional testing the following can be used for a beforeAll and after All. 
+    require('Jody').configure.beforeAll(function (done) {
+      // some setup before specs
+      done();   
+    });
+
+    require('Jody').configure.afterAll(function (done) {
+      // clean up after all tests run
+      done();   
+    });
+
+  A `spec_helper.js` file in your specs directory will be executed before all specs. A good place to put your before all and after all.
+
+
+
 Examples
 ========
 

@@ -63,9 +63,9 @@ while (args.length) {
     default:
         if (/\.js$/.test(arg)) {
           files.push(arg);
-          if (arg === 'spec_helper.js') {
-            spec_helper_loaded = true;
-          }
+         // if (arg === 'spec_helper.js') {
+            //spec_helper_loaded = true;
+         // }
         }
         break;
   }
