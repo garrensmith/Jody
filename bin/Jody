@@ -36,6 +36,26 @@ var help = ''
 + '\n'
 + '\n If no file given, will look in ./specs for specs to run';
 
+/*
+process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ');
+  if (typeof err === 'object') {
+    if (err.message) {
+      console.log('\nMessage: ' + err.message)
+    }
+    if (err.stack) {
+      console.log('\nStacktrace:')
+      console.log('====================')
+     console.log (err.stack);
+    }
+
+    if (err.error) {
+      //console.dir(err);
+    }
+  } else {
+    console.log('dumpError :: argument is not an object');
+  }});
+*/
 
 while (args.length) {
   var arg = args.shift();
@@ -146,14 +166,17 @@ if (fileWatching == false) {
 
   var specRunner = new runner.Runner();
 
-  specRunner.on('done', function () {
+  /*specRunner.on('done', function () {
     reporter.displayResults();
     if (reporter.failedSpecs) {
+      console.log("done fired");
       process.exit(1);
     }
+    console.log("done fired");
+
     process.exit(0);
 
-  });
+  });*/
  
  specRunner.run(Jody.specification_groups);
  
