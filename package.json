@@ -15,7 +15,7 @@
     "engines": {
         "node": "*"
     },
-    "dependancies": {
+    "dependencies": {
         "async":"*"   
     }
 }
