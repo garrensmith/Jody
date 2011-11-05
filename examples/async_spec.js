@@ -1,5 +1,4 @@
 var describe = require('Jody').describe;
-var inspect = require('sys').inspect;
 var assert = require('assert');
 
 var asyncTest = function (cb) {

@@ -1,6 +1,5 @@
 var describe = require('Jody').describe;
 var assert = require("assert");
-var inspect = require('sys').inspect;
 
 describe("Test 1").it("Should pass",function () {
   assert.equal(1,1);

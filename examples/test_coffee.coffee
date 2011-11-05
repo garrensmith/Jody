@@ -1,4 +1,4 @@
-describe = require 'Jody'
+describe = require 'Jody'.describe
 
 describe -> 
   it "Should look nice in coffee script", ->
