@@ -11,7 +11,7 @@
 
 process.env.NODE_ENV='test' // set test environment
 
-var version = '0.2.2';
+var version = '0.2.4';
 
 
 var async = require('async'),
