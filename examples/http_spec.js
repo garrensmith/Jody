@@ -2,6 +2,7 @@ var describe = require('Jody').describe
 , http = require('http')
 , HttpClient = require('Jody').HttpClient;
 
+/*
 var testServer = http.createServer(function (req, res) {
   console.log("server URL: " + req.url);
 
@@ -59,4 +60,4 @@ it("should get with specific url", function (async) {
    }));
 
 })
-
+*/

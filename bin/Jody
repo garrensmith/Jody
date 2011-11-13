@@ -14,16 +14,15 @@ process.env.NODE_ENV='test' // set test environment
 var version = '0.2.2';
 
 
-var Jody = require('../lib/Jody.js'),
+var async = require('async'),
+    Jody = require('../lib/Jody.js'),
     runner = require('../lib/runner.js'),
     matchers = require('../lib/matchers.js'),
     reporter = require('../lib/reporter.js'),
     path = require('path'),
     fs = require('fs'),
     args = process.argv.slice(2),
-    files = [],
-    spec_helper_loaded = false,
-    fileWatching = false;
+    files = [];
 
 var help = ''
 + 'Usage: Jody [options] <file ...>'
@@ -37,24 +36,24 @@ var help = ''
 + '\n If no file given, will look in ./specs for specs to run';
 
 /*
-process.on('uncaughtException', function (err) {
-  console.log('Caught exception: ');
-  if (typeof err === 'object') {
-    if (err.message) {
-      console.log('\nMessage: ' + err.message)
-    }
-    if (err.stack) {
-      console.log('\nStacktrace:')
-      console.log('====================')
-     console.log (err.stack);
-    }
+   process.on('uncaughtException', function (err) {
+   console.log('Caught exception: ');
+   if (typeof err === 'object') {
+   if (err.message) {
+   console.log('\nMessage: ' + err.message)
+   }
+   if (err.stack) {
+   console.log('\nStacktrace:')
+   console.log('====================')
+   console.log (err.stack);
+   }
 
-    if (err.error) {
-      //console.dir(err);
-    }
-  } else {
-    console.log('dumpError :: argument is not an object');
-  }});
+   if (err.error) {
+//console.dir(err);
+}
+} else {
+console.log('dumpError :: argument is not an object');
+}});
 */
 
 while (args.length) {
@@ -83,110 +82,90 @@ while (args.length) {
     default:
         if (/\.js$/.test(arg)) {
           files.push(arg);
-         // if (arg === 'spec_helper.js') {
-            //spec_helper_loaded = true;
-         // }
         }
         break;
   }
 }
 
-function loadFiles(dir) {
+function load_helper(done) {
   try {
-    fs.readdirSync(dir).map(function(file){
-      if (/\.js$/.test(file)) {
-        files.push(dir + '/' + file); 
-      }
-
-    });
-  } catch (err) {
-    console.log('\n  failed to load specs in ./spec\n');
-    process.exit(1);
+    require(process.cwd() + '/specs/spec_helper.js');
+  } catch (e) {
+    console.log("error in spec helper");
+    console.dir(e);
+    //process.exit(1);
   }
-  console.log('files ' + files);
+
+  done();
 }
 
-function spawn_jody(file) {
-   var jody = spawn('Jody',[file]);
-  jody.stdout.on('data', function (data) {
-    console.log(data.toString());
-  });
+function loadFiles(dir) {
+    try {
+      fs.readdirSync(dir).map(function(file){
+        if (/\.js$/.test(file)) {
+          if (file === 'spec_helper.js') {
+            //console.log("spec helper found");
+            return
+          }
 
-  jody.stderr.on('data', function (data) {
-    console.log(data.toString());
-  });
+          files.push(dir + '/' + file); 
+        }
 
-  jody.on('exit', function (code) {
-  });
-
-};
-
-function watchForChanges() {
-  console.log("Watching files");
-  spawn = require('child_process').spawn;
-
-  fs.readdirSync('./specs').forEach(function (file) {
-    if (!(/\.js$/.test(file))) {
-      return;
+      });
+    } catch (err) {
+      console.log('\n  failed to load specs in ./spec\n');
+      process.exit(1);
     }
-    console.log("watching " + file);
-
-    fs.watchFile('./specs/' +file,{ persistent: true, interval: 1000 }, function (curr, prev) {
-      /*console.log("before ");
-      console.dir(prev);
-      console.log(" after ");
-      console.dir(curr);*/
-      if (curr.mtime !== prev.mtime) {
-        console.log(file + " has been changed. Running tests...");
-        spawn_jody('./specs/' + file);
-     }
-    });
-  });
-  //spawn_jody();
-};
+    console.log('files ' + files);
+  }
 
 
-if (fileWatching == false) {
+function load_files(done) {
+
+  
   if (files.length === 0 ) {
     loadFiles('specs');
   }
-
 
   files.forEach (function (file) {
     file = path.join(process.cwd(), file);
     require(file);
     console.log("executing " + file);
   });
+  
+  done();
 
-  if (!spec_helper_loaded) {
-    try {
-      require(process.cwd() + '/specs/spec_helper.js');
-    } catch (e) { }
-  }
-
-  var specRunner = new runner.Runner();
-
-  /*specRunner.on('done', function () {
-    reporter.displayResults();
-    if (reporter.failedSpecs) {
-      console.log("done fired");
-      process.exit(1);
-    }
-    console.log("done fired");
-
-    process.exit(0);
-
-  });*/
- 
- specRunner.run(Jody.specification_groups);
- 
-
-  //specRunner.beforeAllSpecs();
 }
 
+
+
+function run_it(done) {
+  var specRunner = new runner.Runner();
+
+  specRunner.run(Jody.specification_groups);
+  done();
+}
+
+async.series([load_helper,load_files,run_it]);
+
+
+
 process.on('exit', function () {
-    reporter.displayResults();
+  reporter.displayResults();
 });
+
+/*specRunner.on('done', function () {
+  reporter.displayResults();
+  if (reporter.failedSpecs) {
+  console.log("done fired");
+  process.exit(1);
+  }
+  console.log("done fired");
+
+  process.exit(0);
+
+  });*/
+
 
 
 // vim:ft=javascript

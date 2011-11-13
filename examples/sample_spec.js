@@ -9,14 +9,17 @@ describe("Test 2").
   it("Should fail",function () {
   assert.equal(1,2);
 }).
-  afterAll(function () {
+  afterAll(function (done) {
     console.log("Woohoo");
+    done();
   });
 
 var value = 0;
-describe("Before Test").beforeEach (function () {
+describe("Before Test").beforeEach (function (done) {
   value = 2;
+  done();
 }).it ("Should run before to pass", function () { 
+  console.log("before test test");
   assert.equal(value,2);
 });
 
@@ -68,8 +71,9 @@ describe("Array matchers").
 var beforeAllCounter = 0;
 
 describe("Before All").
-  beforeAll(function () {
+  beforeAll(function (done) {
     beforeAllCounter += 1;
+    done();
   }).
   it("One before all ", function () {
     beforeAllCounter.should().beEqual(1);
