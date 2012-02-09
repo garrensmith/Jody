@@ -113,6 +113,7 @@ function loadFiles(dir) {
 
       });
     } catch (err) {
+      console.dir(err);
       console.log('\n  failed to load specs in ./spec\n');
       process.exit(1);
     }
