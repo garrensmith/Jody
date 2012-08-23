@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/garrensmith/Jody.png)](http://travis-ci.org/garrensmith/Jody)
 Jody
 ============
 
